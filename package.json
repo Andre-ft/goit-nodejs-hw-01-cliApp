@@ -1,0 +1,29 @@
+{
+  "name": "goit-nodejs-hw-01-cliapp",
+  "version": "1.0.0",
+  "description": "go it home work node js #1",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andre-ft/goit-nodejs-hw-01-cliApp.git"
+  },
+  "author": "Andre-ft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Andre-ft/goit-nodejs-hw-01-cliApp/issues"
+  },
+  "homepage": "https://github.com/Andre-ft/goit-nodejs-hw-01-cliApp#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "crypto": "^1.0.1"
+  }
+}
