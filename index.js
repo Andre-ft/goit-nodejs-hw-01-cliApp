@@ -1,7 +1,13 @@
 // const fileOperations = require("./contacts");
-const { listContacts, getContactById, addContact } = require("./contacts");
+const {
+  listContacts,
+  getContactById,
+  addContact,
+  updateContactById,
+  removeContact,
+} = require("./contacts");
 const { Command } = require("commander");
-const { error } = require("console");
+
 const program = new Command();
 
 program
@@ -16,7 +22,6 @@ program.parse(process.argv);
 const argv = program.opts();
 
 async function invokeAction({ action, id, name, email, phone }) {
-  console.log("action", action);
   switch (action) {
     case "list":
       const contacts = await listContacts();
@@ -24,17 +29,12 @@ async function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case "get":
-      try {
-        const contact = await getContactById(id);
-        if (contact) {
-          console.log(`contact by id ${id}`, contact);
-          return;
-        }
-        throw new Error(`contact by id = ${id} not found`);
-      } catch (error) {
-        console.error(error.message);
+      const contact = await getContactById(id);
+      if (contact) {
+        console.log(`contact by id ${id}`, contact);
+        return;
       }
-
+      throw new Error(`contact by id = ${id} not found`);
       break;
 
     case "add":
@@ -43,7 +43,24 @@ async function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case "remove":
-      // ... id
+      const removedContact = await removeContact(id);
+      console.log("Removed contact: ", removedContact);
+      break;
+
+    case "update":
+      const updatedProduct = await updateContactById({
+        id,
+        name,
+        email,
+        phone,
+      });
+
+      if (updatedProduct) {
+        console.log(`contact by id ${id}`, updatedProduct);
+        return;
+      }
+
+      throw new Error(`contact by id = ${id} not found`);
       break;
 
     default:
