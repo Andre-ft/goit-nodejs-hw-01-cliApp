@@ -68,6 +68,8 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
+console.log("null == 0", 0 == undefined);
+
 (async () => {
   await invokeAction(argv);
 })();
